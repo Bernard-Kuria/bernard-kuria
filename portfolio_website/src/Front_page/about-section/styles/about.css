@@ -1,0 +1,13 @@
+.about-me {
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 0 10%;
+}

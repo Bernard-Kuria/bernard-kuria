@@ -1,0 +1,17 @@
+:root {
+  --primary-blue: rgb(0, 125, 255);
+  --secondary-blue: rgb(0, 60, 120);
+  --terciary-blue: rgb(6, 16, 26);
+  --primary-black: rgb(0, 0, 0);
+  --primary-white: rgb(255, 255, 255);
+  background-color: var(--primary-black);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

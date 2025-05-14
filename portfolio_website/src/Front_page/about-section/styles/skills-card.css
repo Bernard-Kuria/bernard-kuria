@@ -1,0 +1,24 @@
+.skills-card-border {
+  background-image: linear-gradient(
+    to bottom,
+    var(--terciary-blue) 20%,
+    var(--secondary-blue) 50%,
+    var(--primary-blue) 90%
+  );
+  width: 250px;
+  height: 250px;
+  z-index: -1;
+  border-radius: 20px;
+  position: relative; /* Add this */
+  display: inline-block;
+}
+
+.card {
+  background-color: var(--primary-black); /* Fix incorrect property */
+  border-radius: 20px;
+  width: 248px;
+  height: 248px;
+  z-index: 1;
+  position: relative; /* Add this */
+  transform: translateX(1px) translateY(1px);
+}

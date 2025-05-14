@@ -1,0 +1,25 @@
+.proj-achvmt-title {
+  border: 1px solid var(--secondary-blue);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 60%;
+  height: 400px;
+}
+
+.proj-achvmt-title .title {
+  color: var(--primary-blue);
+  text-align: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.proj-achvmt-title .fa-xmark {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.proj-achvmt-title .description {
+  color: var(--primary-white);
+}

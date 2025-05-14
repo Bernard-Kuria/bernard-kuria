@@ -1,0 +1,46 @@
+.proj-achvmt {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+.proj-achvmt .year-selection {
+  color: var(--primary-blue);
+  margin-bottom: 50px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.year-selection .years {
+  width: 150px;
+  max-width: 200px;
+  display: grid;
+  justify-items: center;
+  position: relative;
+  box-shadow: inset 0 15px 20px -20px var(--secondary-blue),
+    inset 0 -15px 20px -20px var(--secondary-blue); /* Inward shadow */
+  border-radius: 7px;
+}
+
+.years::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1em;
+  border-top: 1px solid var(--secondary-blue);
+  border-bottom: 1px solid var(--secondary-blue);
+}
+
+.navigation-arrows {
+  display: grid;
+  justify-items: center;
+}
+
+.bubbles {
+  width: 60%;
+}
