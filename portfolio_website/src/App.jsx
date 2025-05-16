@@ -5,12 +5,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 import FrontPage from "./Front_page/Front-page.jsx";
 
 library.add(faXmark);
 library.add(faSortUp);
 library.add(faSortDown);
+library.add(faArrowsRotate);
 import "./App.css";
 
 function App() {

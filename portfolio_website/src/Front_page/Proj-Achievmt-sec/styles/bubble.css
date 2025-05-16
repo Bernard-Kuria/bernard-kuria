@@ -1,18 +1,23 @@
+.proj-achvmt-title-container {
+  display: flex;
+  width: 100%;
+}
+
 .outer-reflection {
-  width: 200px;
-  height: 200px;
   background: linear-gradient(
     50deg,
     var(--primary-white) 10%,
     var(--primary-black) 40%
   );
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .bubble {
   position: relative;
   display: grid;
   justify-content: center;
+  justify-items: center;
   width: calc(100% - 6px);
   height: calc(100% - 6px);
   background-color: var(--primary-black);
@@ -59,11 +64,12 @@
 
 .bubble .title {
   color: var(--primary-blue);
+  width: 80%;
   text-align: center;
 }
 
 .click {
   color: var(--primary-white);
-  font-size: 0.7em;
+  font-size: 60%;
   text-align: center;
 }
