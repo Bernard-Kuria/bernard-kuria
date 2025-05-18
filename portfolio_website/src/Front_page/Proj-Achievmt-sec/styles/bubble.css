@@ -11,13 +11,11 @@
   );
   border-radius: 50%;
   cursor: pointer;
+  display: inline-flex;
 }
 
-.bubble {
-  position: relative;
-  display: grid;
-  justify-content: center;
-  justify-items: center;
+.outer-reflection .bubble {
+  display: inline-flex;
   width: calc(100% - 6px);
   height: calc(100% - 6px);
   background-color: var(--primary-black);
@@ -26,16 +24,16 @@
   translate: 1px 1px;
 }
 
-.reflection-1,
-.reflection-2,
-.reflection-3 {
+.bubble .reflection-1,
+.bubble .reflection-2,
+.bubble .reflection-3 {
   position: absolute;
   background-color: var(--primary-white);
   border-radius: 50%;
   opacity: 80%;
 }
 
-.reflection-1 {
+.bubble .reflection-1 {
   width: 30%;
   height: 15%;
   border-radius: 50%;
@@ -44,7 +42,7 @@
   top: 15%;
 }
 
-.reflection-2 {
+.bubble .reflection-2 {
   width: 22%;
   height: 7.5%;
   border-radius: 50%;
@@ -53,7 +51,7 @@
   bottom: 25%;
 }
 
-.reflection-3 {
+.bubble .reflection-3 {
   width: 10%;
   height: 5%;
   border-radius: 50%;
@@ -63,13 +61,12 @@
 }
 
 .bubble .title {
+  display: grid;
+  align-items: center;
   color: var(--primary-blue);
   width: 80%;
-  text-align: center;
-}
-
-.click {
-  color: var(--primary-white);
-  font-size: 60%;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  margin-left: 10%;
   text-align: center;
 }

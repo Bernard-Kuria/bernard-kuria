@@ -6,6 +6,7 @@ import "./styles/projAchvmt.css";
 
 const initialMilestones = {
   milestone1: {
+    id: "milestone1",
     year: 2023,
     title: "1st Place JKUAT Hackathon",
     bubbleSize: "200px",
@@ -15,6 +16,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone2: {
+    id: "milestone2",
     year: 2024,
     title: "E-NEXUS Start-up",
     bubbleSize: "250px",
@@ -24,6 +26,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone3: {
+    id: "milestone3",
     year: 2023,
     title: "3rd place Mt Kenya Hackathon",
     bubbleSize: "200px",
@@ -33,6 +36,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone4: {
+    id: "milestone4",
     year: 2024,
     title: "AfyaPulse Start-up",
     bubbleSize: "250px",
@@ -42,6 +46,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone5: {
+    id: "milestone5",
     year: 2023,
     title: "Self-Balancing Robot",
     bubbleSize: "150px",
@@ -51,6 +56,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone6: {
+    id: "milestone6",
     year: 2024,
     title: "Job at KEDA Ceramics",
     bubbleSize: "200px",
@@ -60,6 +66,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone7: {
+    id: "milestone7",
     year: 2025,
     title: "Internship at onQ Kenya",
     bubbleSize: "200px",
@@ -69,6 +76,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone8: {
+    id: "milestone8",
     year: 2025,
     title: "This potrfolio website",
     bubbleSize: "200px",
@@ -78,6 +86,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone9: {
+    id: "milestone9",
     year: 2024,
     title: "Graduated from Dedan Kimathi University",
     bubbleSize: "200px",
@@ -87,6 +96,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone10: {
+    id: "milestone10",
     year: 2022,
     title: "Participant at ElectronicWings Competition",
     bubbleSize: "200px",
@@ -96,6 +106,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone11: {
+    id: "milestone11",
     year: 2023,
     title: "Participant at World Engineering Day Hackathon",
     bubbleSize: "200px",
@@ -105,6 +116,7 @@ const initialMilestones = {
     popped: false,
   },
   milestone12: {
+    id: "milestone12",
     year: 2021,
     title: "First paid job",
     bubbleSize: "200px",
@@ -123,12 +135,15 @@ export default function ProjAchvmt() {
     )
   );
   const [displayAboutTitle, setdisplayAboutTitle] = useState(false);
+  const [bubblesPopped, setBubblesPopped] = useState(false);
   currentMilestone.popped = true;
 
   const years = Object.values(milestones).map((milestone) => milestone.year);
   const yearsSet = [...new Set(years)];
   const sortedYears = yearsSet.sort((a, b) => a - b);
   const [visibleYear, setVisibleYear] = useState(yearsSet[0]);
+  const [animation, setAnimation] = useState(false);
+  const [numberOfBubbles, setNumberOfBubbles] = useState(0);
 
   function handleClick(newClickedTitle) {
     setdisplayAboutTitle(true);
@@ -144,6 +159,8 @@ export default function ProjAchvmt() {
     );
     setCurrentMilestone(updatedMilestone);
     displayNone(updatedMilestones);
+    setAnimation(false);
+    setNumberOfBubbles(numberOfBubbles + 1);
   }
 
   function displayAll() {
@@ -161,6 +178,7 @@ export default function ProjAchvmt() {
     for (let milestone in newMilestones) {
       newMilestones[milestone].display = "none";
     }
+    setMilestones(newMilestones); // <-- missing
   }
 
   function refreshBubbles() {
@@ -169,13 +187,14 @@ export default function ProjAchvmt() {
       updatedMilestones[milestone].popped = false;
     }
     setMilestones(updatedMilestones);
+    setBubblesPopped(false);
   }
 
   function checkIfAllPopped() {
-    const allPopped = Object.values(milestones).every(
-      (milestone) => milestone.popped === true
-    );
-    return allPopped;
+    const allPopped = Object.values(milestones)
+      .filter((milestone) => milestone.year === visibleYear)
+      .every((milestone) => milestone.popped === true);
+    setBubblesPopped(allPopped);
   }
 
   const yearsRef = useRef(null);
@@ -187,7 +206,7 @@ export default function ProjAchvmt() {
     const yearElements = Array.from(yearsContainer.children);
     const scrollTop = yearsContainer.scrollTop;
     const yearHeight = yearElements[0]?.offsetHeight || 1;
-    const bufferCount = 1; // Number of empty-year divs at the top
+    const bufferCount = 1;
     const visibleIndex = Math.round(scrollTop / yearHeight) + bufferCount;
     const yearText = yearElements[visibleIndex]?.textContent;
 
@@ -196,6 +215,11 @@ export default function ProjAchvmt() {
     } else {
       setVisibleYear(undefined);
     }
+
+    refreshBubbles();
+    displayAll();
+    setAnimation(true);
+    setNumberOfBubbles(0);
   }
 
   function scrollUp() {
@@ -204,6 +228,11 @@ export default function ProjAchvmt() {
       const step = firstYear ? firstYear.offsetHeight : 0;
       yearsRef.current.scrollTop -= step;
     }
+
+    refreshBubbles();
+    displayAll();
+    setAnimation(true);
+    setNumberOfBubbles(0);
   }
 
   function scrollDown() {
@@ -212,11 +241,19 @@ export default function ProjAchvmt() {
       const step = firstYear ? firstYear.offsetHeight : 0;
       yearsRef.current.scrollTop += step;
     }
+    refreshBubbles();
+    displayAll();
+    setAnimation(true);
+    setNumberOfBubbles(0);
   }
 
   return (
     <div className="proj-achvmt">
-      <h2 className="section-title">Project and Achievements</h2>
+      <h2 className="section-title">
+        Project and Achievements
+        <h4 className="pop-invite">Let's pop some bubbles!</h4>
+      </h2>
+
       <div className="year-selection">
         <p className="select-year">Select Year</p>
         <div className="years" ref={yearsRef} onScroll={handleYearsScroll}>
@@ -241,6 +278,9 @@ export default function ProjAchvmt() {
           />
         </div>
       </div>
+      <div className="popped-indicator">
+        {!bubblesPopped ? numberOfBubbles : "ALL"} BUBBLES POPPED!
+      </div>
       <div className="bubbles">
         {Object.values(milestones).map((milestone) => (
           <Bubble
@@ -248,19 +288,22 @@ export default function ProjAchvmt() {
             milestone={milestone}
             handleClick={handleClick}
             visibleYear={visibleYear}
+            animation={animation}
           />
         ))}
       </div>
-      {displayAboutTitle ? (
+      {displayAboutTitle && (
         <AboutTitle
           currentMilestone={currentMilestone}
           displayAll={displayAll}
           setdisplayAboutTitle={setdisplayAboutTitle}
+          visibleYear={visibleYear}
+          checkIfAllPopped={checkIfAllPopped}
+          setAnimation={setAnimation}
+          animation={animation}
         />
-      ) : (
-        ""
       )}
-      {checkIfAllPopped() && !displayAboutTitle ? (
+      {bubblesPopped && !displayAboutTitle && (
         <div className="refresh-bubbles">
           <span className="refresh-text">Refresh Bubbles</span>
           <FontAwesomeIcon
@@ -269,11 +312,11 @@ export default function ProjAchvmt() {
             onClick={() => {
               refreshBubbles();
               displayAll();
+              setAnimation(true);
+              setNumberOfBubbles(0);
             }}
           />
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

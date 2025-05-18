@@ -6,6 +6,10 @@ export default function AboutTitle({
   currentMilestone,
   displayAll,
   setdisplayAboutTitle,
+  visibleYear,
+  checkIfAllPopped,
+  setAnimation,
+  animation,
 }) {
   let newCurrent = { ...currentMilestone };
   newCurrent.bubbleSize = "150px";
@@ -16,20 +20,27 @@ export default function AboutTitle({
     currentMilestone.display = "none";
     setdisplayAboutTitle(false);
     displayAll();
+    checkIfAllPopped();
+    setAnimation(true);
   }
 
   function handleClick() {}
 
   return (
     <div className="proj-achvmt-title-container">
-      <Bubble milestone={newCurrent} handleClick={handleClick} />
+      <Bubble
+        milestone={newCurrent}
+        handleClick={handleClick}
+        visibleYear={visibleYear}
+        animation={animation}
+      />
       <div className="proj-achvmt-title">
-        <h2 className="title">{currentMilestone.title}</h2>
         <FontAwesomeIcon
           icon="fa-solid fa-xmark"
           style={{ color: "#007dff" }}
           onClick={backToBubbles}
         />
+        <h2 className="title">{currentMilestone.title}</h2>
         <p className="description">{currentMilestone.description}</p>
       </div>
     </div>
