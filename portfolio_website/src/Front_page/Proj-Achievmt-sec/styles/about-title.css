@@ -1,3 +1,8 @@
+.proj-achvmt-title-container {
+  display: flex;
+  width: 100%;
+}
+
 .proj-achvmt-title {
   position: relative;
   border: 1px solid var(--secondary-blue);

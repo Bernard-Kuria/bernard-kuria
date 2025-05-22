@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Bubble from "./components/Bubble.jsx";
 import AboutTitle from "./components/AboutTitle.jsx";
@@ -11,7 +11,7 @@ const initialMilestones = {
     title: "1st Place JKUAT Hackathon",
     bubbleSize: "200px",
     description: "Description of milestone 1",
-    clicked: true,
+    clicked: false,
     display: "block",
     popped: false,
   },
@@ -127,13 +127,31 @@ const initialMilestones = {
   },
 };
 
+const dummyMilestone = {
+  id: "dummy",
+  year: null,
+  title: "",
+  bubbleSize: "60px", // Small size
+  description: "",
+  clicked: false,
+  display: "block",
+  popped: false,
+  isDummy: true, // Custom flag to identify dummy bubbles
+};
+
+// Helper to generate a random id
+function randomId() {
+  return "dummy-" + Math.random().toString(36).slice(2, 10);
+}
+
 export default function ProjAchvmt() {
   const [milestones, setMilestones] = useState(initialMilestones);
-  const [currentMilestone, setCurrentMilestone] = useState(
-    Object.values(initialMilestones).find(
+  const [currentMilestone, setCurrentMilestone] = useState(() => {
+    const found = Object.values(initialMilestones).find(
       (milestone) => milestone.clicked === true
-    )
-  );
+    );
+    return { ...found, popped: true };
+  });
   const [displayAboutTitle, setdisplayAboutTitle] = useState(false);
   const [bubblesPopped, setBubblesPopped] = useState(false);
   currentMilestone.popped = true;
@@ -142,8 +160,30 @@ export default function ProjAchvmt() {
   const yearsSet = [...new Set(years)];
   const sortedYears = yearsSet.sort((a, b) => a - b);
   const [visibleYear, setVisibleYear] = useState(yearsSet[0]);
-  const [animation, setAnimation] = useState(false);
+  const [animation, setAnimation] = useState(true);
   const [numberOfBubbles, setNumberOfBubbles] = useState(0);
+  const [dummyBubbles, setDummyBubbles] = useState([]);
+  const bubblesRef = useRef(null);
+  const [displayDummy, setDisplayDummy] = useState(true);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  // Dummy bubble spawner
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDummyBubbles((prev) => {
+        // Limit max bubbles on screen at once (e.g., 5)
+        if (prev.length >= 5) return prev;
+        return [
+          ...prev,
+          {
+            ...dummyMilestone,
+            id: randomId(),
+          },
+        ];
+      });
+    }, 1200); // 1.2 seconds between spawns (adjust as needed)
+    return () => clearInterval(interval);
+  }, [displayDummy]);
 
   function handleClick(newClickedTitle) {
     setdisplayAboutTitle(true);
@@ -161,6 +201,7 @@ export default function ProjAchvmt() {
     displayNone(updatedMilestones);
     setAnimation(false);
     setNumberOfBubbles(numberOfBubbles + 1);
+    setDisplayDummy(false); // Stop spawning dummy bubbles
   }
 
   function displayAll() {
@@ -178,16 +219,18 @@ export default function ProjAchvmt() {
     for (let milestone in newMilestones) {
       newMilestones[milestone].display = "none";
     }
-    setMilestones(newMilestones); // <-- missing
+    setMilestones(newMilestones);
   }
 
   function refreshBubbles() {
     const updatedMilestones = { ...milestones };
     for (let milestone in updatedMilestones) {
       updatedMilestones[milestone].popped = false;
+      updatedMilestones[milestone].clicked = false;
     }
     setMilestones(updatedMilestones);
     setBubblesPopped(false);
+    setRefreshKey((k) => k + 1); // <-- Add this line
   }
 
   function checkIfAllPopped() {
@@ -249,10 +292,8 @@ export default function ProjAchvmt() {
 
   return (
     <div className="proj-achvmt">
-      <h2 className="section-title">
-        Project and Achievements
-        <h4 className="pop-invite">Let's pop some bubbles!</h4>
-      </h2>
+      <h2 className="section-title">Project and Achievements</h2>
+      <h4 className="pop-invite">Let's pop some bubbles!</h4>
 
       <div className="year-selection">
         <p className="select-year">Select Year</p>
@@ -281,10 +322,10 @@ export default function ProjAchvmt() {
       <div className="popped-indicator">
         {!bubblesPopped ? numberOfBubbles : "ALL"} BUBBLES POPPED!
       </div>
-      <div className="bubbles">
+      <div className="bubbles" ref={bubblesRef}>
         {Object.values(milestones).map((milestone) => (
           <Bubble
-            key={milestone.title}
+            key={milestone.title + refreshKey} // <-- Add refreshKey to key
             milestone={milestone}
             handleClick={handleClick}
             visibleYear={visibleYear}
@@ -292,6 +333,23 @@ export default function ProjAchvmt() {
           />
         ))}
       </div>
+      {displayDummy && (
+        <div className="dummybubbles">
+          {dummyBubbles.map((milestone) => (
+            <Bubble
+              key={milestone.id}
+              milestone={milestone}
+              isDummy={true}
+              animation={animation}
+              bubblesParentRef={bubblesRef} // pass the ref
+              onDummyOut={(id) =>
+                setDummyBubbles((prev) => prev.filter((b) => b.id !== id))
+              }
+            />
+          ))}
+        </div>
+      )}
+
       {displayAboutTitle && (
         <AboutTitle
           currentMilestone={currentMilestone}
@@ -301,6 +359,7 @@ export default function ProjAchvmt() {
           checkIfAllPopped={checkIfAllPopped}
           setAnimation={setAnimation}
           animation={animation}
+          setDisplayDummy={setDisplayDummy}
         />
       )}
       {bubblesPopped && !displayAboutTitle && (

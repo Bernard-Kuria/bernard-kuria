@@ -10,6 +10,7 @@ export default function AboutTitle({
   checkIfAllPopped,
   setAnimation,
   animation,
+  setDisplayDummy,
 }) {
   let newCurrent = { ...currentMilestone };
   newCurrent.bubbleSize = "150px";
@@ -22,15 +23,13 @@ export default function AboutTitle({
     displayAll();
     checkIfAllPopped();
     setAnimation(true);
+    setDisplayDummy(true);
   }
-
-  function handleClick() {}
 
   return (
     <div className="proj-achvmt-title-container">
       <Bubble
         milestone={newCurrent}
-        handleClick={handleClick}
         visibleYear={visibleYear}
         animation={animation}
       />

@@ -1,8 +1,13 @@
 .about-me {
-  max-width: 80%;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100vh;
+  /* border: 1px solid var(--secondary-blue); */
   margin: 0 auto;
   text-align: center;
-  box-sizing: border-box;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 40px;
 }
 
 .skills {

@@ -11,6 +11,7 @@ export default function FrontPage() {
       <About />
       <div className="border"></div>
       <ProjAchvmt />
+      <div className="border"></div>
     </>
   );
 }

@@ -1,8 +1,3 @@
-.proj-achvmt-title-container {
-  display: flex;
-  width: 100%;
-}
-
 .outer-reflection {
   background: linear-gradient(
     50deg,
@@ -12,6 +7,7 @@
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
+  position: absolute;
 }
 
 .outer-reflection .bubble {
