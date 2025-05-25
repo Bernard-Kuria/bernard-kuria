@@ -1,24 +1,47 @@
-.skills-card-border {
+.skills-card {
+  perspective: 1000px;
+  color: var(--primary-blue);
+}
+
+.skills-card .card {
   background-image: linear-gradient(
     to bottom,
     var(--terciary-blue) 20%,
     var(--secondary-blue) 50%,
     var(--primary-blue) 90%
   );
+  border-radius: 20px;
   width: 250px;
   height: 250px;
-  z-index: -1;
-  border-radius: 20px;
-  position: relative; /* Add this */
-  display: inline-block;
+  position: relative;
+  margin: 1px 0 0 1px;
+  transform-style: preserve-3d;
+  transition: transform 1000ms;
 }
 
-.card {
-  background-color: var(--primary-black); /* Fix incorrect property */
-  border-radius: 20px;
+.skills-card .card::after {
+  background-color: var(--primary-black);
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
   width: 248px;
   height: 248px;
-  z-index: 1;
-  position: relative; /* Add this */
-  transform: translateX(1px) translateY(1px);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.skills-card .card:hover {
+  transform: rotateY(180deg);
+}
+
+.skills-card .card .card-front,
+.skills-card .card .card-back {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.skills-card .card .card-back {
+  transform: rotateY(180deg);
 }
