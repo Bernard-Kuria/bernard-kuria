@@ -13,7 +13,7 @@ export default function AboutTitle({
   setDisplayDummy,
 }) {
   let newCurrent = { ...currentMilestone };
-  newCurrent.bubbleSize = "150px";
+  newCurrent.bubbleSize = 150;
   newCurrent.fontSize = "1rem";
   newCurrent.display = "block";
 

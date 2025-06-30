@@ -1,7 +1,7 @@
 .proj-achvmt-title-container {
   display: flex;
   width: 100%;
-  transform: translateY(-60px);
+  transform: translateY(-70px);
 }
 
 .proj-achvmt-title {
@@ -35,6 +35,10 @@
 }
 
 @media (max-width: 500px) {
+  .proj-achvmt-title-container {
+    transform: translateY(-150px);
+  }
+
   .proj-achvmt-title {
     width: 100%;
   }
