@@ -57,12 +57,13 @@
 }
 
 .bubble .title {
+  font-size: 1.4em;
   display: grid;
   align-items: center;
   color: var(--primary-blue);
-  width: 80%;
+  width: 90%;
   margin-top: 20%;
   margin-bottom: 20%;
-  margin-left: 10%;
+  margin-left: 5%;
   text-align: center;
 }

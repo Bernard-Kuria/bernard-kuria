@@ -4,13 +4,13 @@ import Overview from "./overview-section/Overview.jsx";
 import About from "./about-section/About-me.jsx";
 import ProjAchvmt from "./Proj-Achievmt-sec/ProjAchvmt.jsx";
 
-export default function FrontPage() {
+export default function FrontPage({ AboutMe, initialMilestones }) {
   return (
     <>
       <Overview />
-      <About />
+      <About AboutMe={AboutMe} />
       <div className="border"></div>
-      <ProjAchvmt />
+      <ProjAchvmt initialMilestones={initialMilestones} />
       <div className="border"></div>
     </>
   );

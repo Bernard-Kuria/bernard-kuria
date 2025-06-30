@@ -9,6 +9,7 @@
   border-radius: 10px;
   width: calc(100% - 150px);
   height: 350px;
+  overflow-y: scroll;
 }
 
 .proj-achvmt-title .fa-xmark {

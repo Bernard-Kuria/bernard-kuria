@@ -41,6 +41,7 @@ export default function AboutTitle({
         />
         <h2 className="title">{currentMilestone.title}</h2>
         <p className="description">{currentMilestone.description}</p>
+        <img src="" alt="" />
       </div>
     </div>
   );

@@ -4,139 +4,16 @@ import Bubble from "./components/Bubble.jsx";
 import AboutTitle from "./components/AboutTitle.jsx";
 import "./styles/projAchvmt.css";
 
-const initialMilestones = {
-  milestone1: {
-    id: "milestone1",
-    year: 2023,
-    title: "1st Place JKUAT Hackathon",
-    bubbleSize: "200px",
-    description: "Description of milestone 1",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone2: {
-    id: "milestone2",
-    year: 2024,
-    title: "E-NEXUS Start-up",
-    bubbleSize: "250px",
-    description: "Description of milestone 2",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone3: {
-    id: "milestone3",
-    year: 2023,
-    title: "3rd place Mt Kenya Hackathon",
-    bubbleSize: "200px",
-    description: "Description of milestone 3",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone4: {
-    id: "milestone4",
-    year: 2024,
-    title: "AfyaPulse Start-up",
-    bubbleSize: "250px",
-    description: "Description of milestone 4",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone5: {
-    id: "milestone5",
-    year: 2023,
-    title: "Self-Balancing Robot",
-    bubbleSize: "150px",
-    description: "Description of milestone 5",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone6: {
-    id: "milestone6",
-    year: 2024,
-    title: "Job at KEDA Ceramics",
-    bubbleSize: "200px",
-    description: "Description of milestone 6",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone7: {
-    id: "milestone7",
-    year: 2025,
-    title: "Internship at onQ Kenya",
-    bubbleSize: "200px",
-    description: "Description of milestone 7",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone8: {
-    id: "milestone8",
-    year: 2025,
-    title: "This potrfolio website",
-    bubbleSize: "200px",
-    description: "Description of milestone 8",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone9: {
-    id: "milestone9",
-    year: 2024,
-    title: "Graduated from Dedan Kimathi University",
-    bubbleSize: "200px",
-    description: "Description of milestone 9",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone10: {
-    id: "milestone10",
-    year: 2022,
-    title: "Participant at ElectronicWings Competition",
-    bubbleSize: "200px",
-    description: "Description of milestone 10",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone11: {
-    id: "milestone11",
-    year: 2023,
-    title: "Participant at World Engineering Day Hackathon",
-    bubbleSize: "200px",
-    description: "Description of milestone 11",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-  milestone12: {
-    id: "milestone12",
-    year: 2021,
-    title: "First paid job",
-    bubbleSize: "200px",
-    description: "Description of milestone 12",
-    clicked: false,
-    display: "block",
-    popped: false,
-  },
-};
-
 const dummyMilestone = {
   id: "dummy",
   year: null,
   title: "",
-  bubbleSize: "60px", // Small size
+  bubbleSize: "60px",
   description: "",
   clicked: false,
   display: "block",
   popped: false,
-  isDummy: true, // Custom flag to identify dummy bubbles
+  isDummy: true,
 };
 
 // Helper to generate a random id
@@ -144,7 +21,7 @@ function randomId() {
   return "dummy-" + Math.random().toString(36).slice(2, 10);
 }
 
-export default function ProjAchvmt() {
+export default function ProjAchvmt({ initialMilestones }) {
   const [milestones, setMilestones] = useState(initialMilestones);
   const [currentMilestone, setCurrentMilestone] = useState(() => {
     const found = Object.values(initialMilestones).find(

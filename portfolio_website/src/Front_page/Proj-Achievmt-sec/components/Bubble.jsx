@@ -77,8 +77,6 @@ export default function Bubble({
     return () => cancelAnimationFrame(animationFrameId);
   }, [isVisible, isDummy, animation, milestone.id, onDummyOut]);
 
-  // Move this function OUTSIDE of useEffect!
-
   return isVisible ? (
     <div
       className="outer-reflection"

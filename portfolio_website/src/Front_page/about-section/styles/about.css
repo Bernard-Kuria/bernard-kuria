@@ -5,9 +5,7 @@
   /* border: 1px solid var(--secondary-blue); */
   margin: 0 auto;
   text-align: center;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 40px;
+  padding: 0 10% 40px 10%;
 }
 
 .skills {
@@ -15,4 +13,15 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
   padding: 0 10%;
+}
+
+@media (max-width: 500px) {
+  .about-me {
+    height: fit-content;
+    padding: 0;
+  }
+  .skills {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
 }

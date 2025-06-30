@@ -1,16 +1,15 @@
 import "../styles/skills-card.css";
 
-export default function Skill() {
+export default function Skill({ aboutTopic, front, back }) {
   return (
     <div className="skills-card">
       <div className="card">
         <div className="card-front">
-          <h3>Frontend Dev</h3>
-          <p>HTML, CSS, JS</p>
+          <h3>{aboutTopic}</h3>
+          <h4 className="front">{front}</h4>
         </div>
         <div className="card-back">
-          <h3>Experience</h3>
-          <p>2+ years building UIs</p>
+          <div className="back">{back}</div>
         </div>
       </div>
     </div>
