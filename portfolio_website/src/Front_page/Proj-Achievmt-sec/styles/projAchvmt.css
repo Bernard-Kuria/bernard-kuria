@@ -109,3 +109,9 @@
   position: relative;
   /* border: 1px solid var(--secondary-blue); */
 }
+
+@media (max-width: 500px) {
+  .proj-achvmt {
+    padding: 0 10px;
+  }
+}
