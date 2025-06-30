@@ -11,3 +11,53 @@
   text-align: center;
   margin-bottom: 10px;
 }
+
+.grid-container {
+  position: relative;
+}
+
+.dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 0;
+}
+
+.dot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #222;
+}
+
+.glow {
+  background-color: #00ffe7;
+  box-shadow: 0 0 6px #00ffe7, 0 0 12px #00ffe7;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.glow-soft {
+  background-color: #00ffe7;
+  box-shadow: 0 0 2px #00ffe7, 0 0 4px #00ffe7;
+  opacity: 0.4;
+  transition: box-shadow 0.4s ease, background-color 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.glow-medium {
+  background-color: #00ffe7;
+  box-shadow: 0 0 4px #00ffe7, 0 0 8px #00ffe7;
+  opacity: 0.7;
+  transition: box-shadow 0.4s ease, background-color 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.glow-strong {
+  background-color: #00ffe7;
+  box-shadow: 0 0 6px #00ffe7, 0 0 12px #00ffe7;
+  opacity: 1;
+  transition: box-shadow 0.4s ease, background-color 0.4s ease,
+    opacity 0.4s ease;
+}
