@@ -280,7 +280,11 @@ const initialMilestones = {
         </p>
         <p>
           Check out more about my project here
-          {<a href="">my automated house project</a>}
+          {
+            <a href="https://www.electronicwings.com/users/IsaiahBernard/projects/2433/iot-based-home-automation-system">
+              my automated house project
+            </a>
+          }
         </p>
       </>
     ),
