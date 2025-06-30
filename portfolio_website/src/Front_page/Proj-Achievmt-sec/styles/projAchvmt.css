@@ -68,7 +68,7 @@
 }
 
 .bubbles {
-  border: 1px solid var(--secondary-blue);
+  /* border: 1px solid var(--secondary-blue); */
   position: relative;
   width: 100%;
   height: 300px;
