@@ -10,7 +10,10 @@
   border-radius: 10px;
   width: calc(100% - 150px);
   height: 350px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-gutter: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-blue) #000;
 }
 
 .proj-achvmt-title .fa-xmark {
