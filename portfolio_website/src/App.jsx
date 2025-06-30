@@ -89,16 +89,17 @@ const initialMilestones = {
         <p>
           Mt-Kenya Hub is an institute located in Nyeri that helps people with
           ideas to grow them into a business. Check them out here:
-          {<a href="https/mtkenyahub.com">Mt Kenya</a>}. It is headed by Savio
-          Wambugu who is also the president of the Association of Countrywide
-          Innovation Hubs. They hold hackathons anually --usually towards the
-          end of the year. The project that I pitched during that hackathon was
-          my E-Nexus startup, which is now in the process of being made into a
-          startup. E-NEXUS is an online platform that connects e-waste producers
-          and consumers through e-commerce as well as stramlining the collection
-          process by organizations. We prioritize combating environmental and
-          health risks associated with e-waste. By doing so, we aim to create
-          employment opportunities and support the growth of local businesses.
+          {<a href="https://mtkenyahub.com/ea/">Mt Kenya</a>}. It is headed by
+          Savio Wambugu who is also the president of the Association of
+          Countrywide Innovation Hubs. They hold hackathons anually --usually
+          towards the end of the year. The project that I pitched during that
+          hackathon was my E-Nexus startup, which is now in the process of being
+          made into a startup. E-NEXUS is an online platform that connects
+          e-waste producers and consumers through e-commerce as well as
+          stramlining the collection process by organizations. We prioritize
+          combating environmental and health risks associated with e-waste. By
+          doing so, we aim to create employment opportunities and support the
+          growth of local businesses.
         </p>
         <p>At that time, my team consisted of three members:</p>
         <ul>
@@ -184,7 +185,8 @@ const initialMilestones = {
       <>
         <p>
           KEDA Ceramics is a company that is located in Kajiado county, Kenya
-          (not their main office) where they manufacture tiles.
+          (not their main office) where they manufacture tiles. Check them out
+          here {<a href="https://www.twyfordtile.com/">TwyFord</a>}
         </p>
         <p>
           Despite working there for 8 months, I was able to learn quite a lot. I
@@ -210,10 +212,11 @@ const initialMilestones = {
     description: (
       <>
         <p>
-          onQ Kenya is a call center company located in Nyeri county, Kenya. I
+          onQ Global is a call center company located in Nyeri county, Kenya. I
           start my internship there on March 3rd 2025 and up to date I'm still
           employed there. Based on the client I was given, my work is to receive
-          calls from customers and help them book vehicles.
+          calls from customers and help them book vehicles. You can check them
+          out here {<a href="https://www.onqglobal.com/">ONQGLOBAL</a>}
         </p>
       </>
     ),
@@ -249,11 +252,9 @@ const initialMilestones = {
         <p>
           Yeah, that's right. I studied a bachelor's degree in Mechatronics
           engineering at Dedan Kimathi University of Technology and graduated
-          with a 2nd honors degree. I studied from 2019 to 2024.
+          with a 2nd honors degree. I studied from 2019 to 2024. Check out the
+          University here {<a href="https://www.dkut.ac.ke/">Dekut</a>}
         </p>
-        {/* <p>
-          My first year started out with a lot of curiousity, with worries that I was studying something that was too big for me. Little did I know, that I was bigger than the course. I 
-        </p> */}
       </>
     ),
     clicked: false,
@@ -274,10 +275,11 @@ const initialMilestones = {
           electronics can be used to automate a house. Therefore I made a
           circuit to control all the electronic appliances in a house. I also
           worked with my colleague to who made a mobile app, therefore every
-          applicance could be implemented from a mobile app.
+          applicance could be implemented from a mobile app. Check them out here
+          {<a href="https://www.electronicwings.com/">ElectronicWings</a>}
         </p>
         <p>
-          Check out more about my project here{" "}
+          Check out more about my project here
           {<a href="">my automated house project</a>}
         </p>
       </>
@@ -297,7 +299,13 @@ const initialMilestones = {
           I worked on this project for sometime in 2024, but I was not sure
           where to present it. So when I heard about the world engineering Day
           Hackathon, I knew I had to sieze that opportunity. It's the same
-          E-NEXUS project that is discussed later on in this website.
+          E-NEXUS project that is discussed later on in this website. Check out
+          their website here{" "}
+          {
+            <a href="https://worldengineeringday.net/listing/world-engineering-day-for-sustainable-development-2/">
+              World Engineering Day
+            </a>
+          }
         </p>
       </>
     ),
