@@ -8,7 +8,7 @@ const dummyMilestone = {
   id: "dummy",
   year: null,
   title: "",
-  bubbleSize: "60px",
+  bubbleSize: 60,
   description: "",
   clicked: false,
   display: "block",

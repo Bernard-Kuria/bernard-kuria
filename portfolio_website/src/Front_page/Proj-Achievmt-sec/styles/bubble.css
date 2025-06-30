@@ -67,3 +67,9 @@
   margin-left: 5%;
   text-align: center;
 }
+
+@media (max-width: 500px) {
+  .bubble .title {
+    font-size: 1.2em;
+  }
+}

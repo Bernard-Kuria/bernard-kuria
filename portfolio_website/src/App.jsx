@@ -20,7 +20,7 @@ const initialMilestones = {
     id: "milestone1",
     year: 2023,
     title: "1st Place JKUAT Hackathon",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <div>
         <p>
@@ -65,7 +65,7 @@ const initialMilestones = {
     id: "milestone2",
     year: 2024,
     title: "E-NEXUS Start-up",
-    bubbleSize: "250px",
+    bubbleSize: 250,
     description: (
       <p>
         E-Nexus is an online platform that connects e-waste producers and
@@ -83,7 +83,7 @@ const initialMilestones = {
     id: "milestone3",
     year: 2023,
     title: "3rd place Mt Kenya Hackathon",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -116,7 +116,7 @@ const initialMilestones = {
     id: "milestone4",
     year: 2024,
     title: "AfyaPulse Start-up",
-    bubbleSize: "250px",
+    bubbleSize: 250,
     description: (
       <>
         <p>
@@ -143,7 +143,7 @@ const initialMilestones = {
     id: "milestone5",
     year: 2023,
     title: "Self-Balancing Robot",
-    bubbleSize: "150px",
+    bubbleSize: 150,
     description: (
       <>
         <p>
@@ -179,7 +179,7 @@ const initialMilestones = {
     id: "milestone6",
     year: 2024,
     title: "Job at KEDA Ceramics",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -206,7 +206,7 @@ const initialMilestones = {
     id: "milestone7",
     year: 2025,
     title: "Internship at onQ Kenya",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -225,7 +225,7 @@ const initialMilestones = {
     id: "milestone8",
     year: 2025,
     title: "This portfolio website",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -243,7 +243,7 @@ const initialMilestones = {
     id: "milestone9",
     year: 2024,
     title: "Graduated from Dedan Kimathi University",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -264,7 +264,7 @@ const initialMilestones = {
     id: "milestone10",
     year: 2022,
     title: "Participant at ElectronicWings Competition",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -290,7 +290,7 @@ const initialMilestones = {
     id: "milestone11",
     year: 2023,
     title: "Participant at World Engineering Day Hackathon",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>
@@ -309,7 +309,7 @@ const initialMilestones = {
     id: "milestone12",
     year: 2021,
     title: "First paid job",
-    bubbleSize: "200px",
+    bubbleSize: 200,
     description: (
       <>
         <p>

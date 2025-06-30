@@ -82,8 +82,16 @@ export default function Bubble({
       className="outer-reflection"
       ref={animation ? bubbleRef : null}
       style={{
-        width: milestone.bubbleSize,
-        height: milestone.bubbleSize,
+        width: `${
+          window.innerWidth > 500
+            ? milestone.bubbleSize
+            : milestone.bubbleSize - 30
+        }px`,
+        height: `${
+          window.innerWidth > 500
+            ? milestone.bubbleSize
+            : milestone.bubbleSize - 30
+        }px`,
         display: milestone.display,
         position: animation ? "absolute" : "relative",
         opacity: animation && isDummy ? 0 : 1,
