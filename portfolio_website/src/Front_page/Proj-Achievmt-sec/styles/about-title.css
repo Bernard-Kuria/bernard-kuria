@@ -36,7 +36,7 @@
 
 @media (max-width: 500px) {
   .proj-achvmt-title-container {
-    transform: translateY(-150px);
+    transform: translateY(-200px);
   }
 
   .proj-achvmt-title {
