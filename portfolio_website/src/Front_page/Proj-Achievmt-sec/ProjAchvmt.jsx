@@ -170,7 +170,7 @@ export default function ProjAchvmt({ initialMilestones }) {
   return (
     <div className="proj-achvmt">
       <h2 className="section-title">Project and Achievements</h2>
-      <h4 className="pop-invite">Let's pop some bubbles!</h4>
+      <h4 className="pop-invite">Let's pop some bubbles!🔵💥</h4>
 
       <div className="year-selection">
         <p className="select-year">Select Year</p>

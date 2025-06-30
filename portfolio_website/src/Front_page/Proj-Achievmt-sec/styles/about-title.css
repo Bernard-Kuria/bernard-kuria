@@ -32,3 +32,9 @@
   padding: 10px;
   color: var(--primary-white);
 }
+
+@media (max-width: 500px) {
+  .proj-achvmt-title {
+    width: 100%;
+  }
+}

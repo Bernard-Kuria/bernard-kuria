@@ -28,11 +28,14 @@ export default function AboutTitle({
 
   return (
     <div className="proj-achvmt-title-container">
-      <Bubble
-        milestone={newCurrent}
-        visibleYear={visibleYear}
-        animation={animation}
-      />
+      {window.innerWidth > 500 && (
+        <Bubble
+          milestone={newCurrent}
+          visibleYear={visibleYear}
+          animation={animation}
+        />
+      )}
+
       <div className="proj-achvmt-title">
         <FontAwesomeIcon
           icon="fa-solid fa-xmark"
@@ -40,8 +43,8 @@ export default function AboutTitle({
           onClick={backToBubbles}
         />
         <h2 className="title">{currentMilestone.title}</h2>
-        <p className="description">{currentMilestone.description}</p>
-        <img src="" alt="" />
+        <div className="description">{currentMilestone.description}</div>
+        {/* <img src="" alt="" /> */}
       </div>
     </div>
   );
