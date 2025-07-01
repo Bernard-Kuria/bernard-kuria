@@ -1,5 +1,4 @@
 .proj-achvmt {
-  /* border: 1px solid var(--secondary-blue); */
   width: 100%;
   height: 100vh;
   margin: 0 auto;
@@ -14,7 +13,6 @@
   margin: 0;
   padding: 0;
   color: var(--primary-blue);
-  /* font-size: 1em; */
 }
 
 .proj-achvmt .year-selection {
@@ -68,15 +66,9 @@
 }
 
 .bubbles {
-  /* border: 1px solid var(--secondary-blue); */
   position: relative;
   width: 100%;
   height: 300px;
-  /* Remove display: flex/row/wrap for animation! */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  /* gap: 1em; */
 }
 
 .refresh-bubbles {
@@ -111,7 +103,6 @@
   width: 100%;
   height: 80px;
   position: relative;
-  /* border: 1px solid var(--secondary-blue); */
 }
 
 @media (max-width: 500px) {
