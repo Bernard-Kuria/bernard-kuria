@@ -79,6 +79,10 @@
   /* gap: 1em; */
 }
 
+.refresh-bubbles {
+  z-index: 2;
+}
+
 .refresh-text {
   color: var(--primary-blue);
   margin-right: 10px;

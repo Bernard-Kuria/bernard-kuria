@@ -33,30 +33,30 @@
 }
 
 .glow {
-  background-color: #00ffe7;
-  box-shadow: 0 0 6px #00ffe7, 0 0 12px #00ffe7;
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 6px var(--primary-blue), 0 0 12px var(--primary-blue);
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .glow-soft {
-  background-color: #00ffe7;
-  box-shadow: 0 0 2px #00ffe7, 0 0 4px #00ffe7;
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 2px var(--primary-blue), 0 0 4px var(--primary-blue);
   opacity: 0.4;
   transition: box-shadow 0.4s ease, background-color 0.4s ease,
     opacity 0.4s ease;
 }
 
 .glow-medium {
-  background-color: #00ffe7;
-  box-shadow: 0 0 4px #00ffe7, 0 0 8px #00ffe7;
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 4px var(--primary-blue), 0 0 8px var(--primary-blue);
   opacity: 0.7;
   transition: box-shadow 0.4s ease, background-color 0.4s ease,
     opacity 0.4s ease;
 }
 
 .glow-strong {
-  background-color: #00ffe7;
-  box-shadow: 0 0 6px #00ffe7, 0 0 12px #00ffe7;
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 6px var(--primary-blue), 0 0 12px var(--primary-blue);
   opacity: 1;
   transition: box-shadow 0.4s ease, background-color 0.4s ease,
     opacity 0.4s ease;
