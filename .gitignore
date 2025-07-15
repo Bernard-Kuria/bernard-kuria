@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#Admin SDK
+bernard-webfolio-firebase-adminsdk-fbsvc-5101b75dee.json

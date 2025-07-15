@@ -43,8 +43,25 @@ export default function AboutTitle({
           onClick={backToBubbles}
         />
         <h2 className="title">{currentMilestone.title}</h2>
-        <div className="description">{currentMilestone.description}</div>
-        {/* <img src="" alt="" /> */}
+        <div className="description">
+          {currentMilestone.description.map((desc, index) => (
+            <div key={index}>
+              {desc.type === "paragraph" ? (
+                <p>{desc.content}</p>
+              ) : desc.type === "list" ? (
+                <ul>
+                  {desc.items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              ) : desc.type === "images" ? (
+                desc.images.map((image) => (
+                  <img src={image.src} alt={image.alt || "image"} />
+                ))
+              ) : null}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
