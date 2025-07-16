@@ -12,7 +12,7 @@ const firebaseConfig = {
   measurementId: "G-EW8WZJWRTZ",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const profileRef = ref(storage, "images/Profile.jpg");
@@ -28,4 +28,4 @@ export async function getProfileImgUrl() {
 }
 
 // Default export (add this at the end)
-export default getProfileImgUrl;
+export default { getProfileImgUrl, app };
