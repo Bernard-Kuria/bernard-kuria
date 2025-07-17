@@ -1,31 +1,17 @@
 import { useEffect, useState } from "react";
 import "../styles/me.css";
 
-import { getProfileImgUrl } from "../../../cloudData.js";
-import { fetchImages } from "../../../../api/imagesApi.js";
+import { getProfileImgUrl } from "../../../../api/services/cloud/cloudData.js";
+import { fetchImages } from "../../../../api/services/firestore/imagesApi.js";
 
 export default function Me() {
-  useEffect(() => {
-    async function getImages() {
-      try {
-        const images = await fetchImages();
-        console.log("Fetched images:", images);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    }
-    getImages();
-  }, []);
-
   const [profileImgUrl, setProfileImgUrl] = useState();
-  // Grab the image from firebase
+
+  // Fetch the profile image URL and images from Firestore
   useEffect(() => {
-    getProfileImgUrl().then((url) => {
-      if (url) {
-        setProfileImgUrl(url);
-      }
-    });
-  }, [setProfileImgUrl]);
+    getProfileImgUrl().then((url) => url && setProfileImgUrl(url));
+    fetchImages().then((images) => console.log("Images:", images));
+  }, []);
 
   // Animation for the border glow
   useEffect(() => {

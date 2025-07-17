@@ -1,4 +1,5 @@
-import { app } from "../src/cloudData.js";
+import { app } from "../../firebase.js";
+
 import {
   getFirestore,
   connectFirestoreEmulator,
@@ -8,6 +9,8 @@ import {
 
 // firebaseApps previously initialized using initializeApp()
 const db = getFirestore(app);
+
+// Connect to Firestore emulator if running locally
 if (window.location.hostname === "localhost") {
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
 }
