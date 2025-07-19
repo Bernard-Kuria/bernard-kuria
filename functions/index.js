@@ -1,12 +1,18 @@
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
+import functions from "firebase-functions";
+import express from "express";
+import cors from "cors";
 
-// ✅ Safe initialization using Application Default Credentials
-if (!admin.apps.length) {
-  admin.initializeApp(); // No params needed if using default credentials
-}
+import aboutMeRouter from "./routes/aboutMe.routes.js";
+import "./firebaseAdmin.js";
 
-// ✅ Simple function — this should still deploy fine
-exports.helloWorld = functions.https.onRequest((req, res) => {
-  res.send("Hello from Bernard with Admin SDK Default Init!");
-});
+// initialize Express app
+const app = express();
+
+//middlewares
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+// Routes
+app.use("/aboutMe", aboutMeRouter);
+
+export const api = functions.https.onRequest(app);

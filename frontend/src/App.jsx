@@ -222,68 +222,6 @@ const initialMilestones = [
   },
 ];
 
-const AboutMe = {
-  "Top Skills": {
-    front: "What I'm good At",
-    back: (
-      <ul>
-        <li>Web Dev</li>
-        <li>Embedded Systems</li>
-        <li>UI/UX</li>
-        <li>Electronics Integration</li>
-        <li>IoT</li>
-      </ul>
-    ),
-  },
-  "Biggest Achievements": {
-    front: "Proud Moments",
-    back: (
-      <ul>
-        <li>1st Place at JKUAT Hackathon</li>
-        <li>Founded E-NEXUS</li>
-        <li>Built a self-balancing robot</li>
-      </ul>
-    ),
-  },
-  "Passion Projects": {
-    front: "What I Build for Fun",
-    back: (
-      <ul>
-        <li>tech demos</li>
-        <li>Smart Systems</li>
-        <li>tools for local businesses</li>
-      </ul>
-    ),
-  },
-  "Fun Fact": {
-    front: "Bet You Didn't Know 😏",
-    back: (
-      <ul>
-        <li>I once cycled 43km (Follow me on Strava)</li>
-        <li>I'm an excellent cook, dancer and driver 😎</li>
-        <li>I own a startup company 🥵</li>
-        <li>I debug code late in the night</li>
-        <li>I love adventure: Hicking, site-seeing, you name it</li>
-      </ul>
-    ),
-  },
-  "My Work Style": {
-    front: "How I Work",
-    back: (
-      <ul>
-        <li>Creative</li>
-        <li>Curious</li>
-        <li>Fast when focused</li>
-        <li>Loves a clean UI and reusable code</li>
-      </ul>
-    ),
-  },
-  "Random Life Truth": {
-    front: "Something I believe",
-    back: "You don't need to be ready, just say yes, show up, and figure it out",
-  },
-};
-
 export default function App() {
   return (
     <div className="App">
@@ -292,12 +230,7 @@ export default function App() {
           <Route path="/">
             <Route
               index
-              element={
-                <FrontPage
-                  AboutMe={AboutMe}
-                  initialMilestones={initialMilestones}
-                />
-              }
+              element={<FrontPage initialMilestones={initialMilestones} />}
             />
           </Route>
         </Routes>

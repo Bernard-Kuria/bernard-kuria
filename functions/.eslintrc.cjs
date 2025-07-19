@@ -1,20 +1,21 @@
 module.exports = {
   env: {
-    es6: true,
+    es2022: true,
     node: true,
   },
   parserOptions: {
-    "ecmaVersion": 2018,
+    ecmaVersion: "latest",
+    sourceType: "module", // Allow ES Modules
   },
-  extends: [
-    "eslint:recommended",
-    "google",
-  ],
+  extends: ["eslint:recommended"],
   rules: {
     "no-restricted-globals": ["error", "name", "length"],
     "prefer-arrow-callback": "error",
-    "quotes": ["error", "double", {"allowTemplateLiterals": true}],
+    "new-cap": ["error", { capIsNewExceptions: ["Router"] }],
+    "object-curly-spacing": ["error", "always"],
+    quotes: ["error", "double", { allowTemplateLiterals: true }],
   },
+
   overrides: [
     {
       files: ["**/*.spec.*"],
@@ -24,5 +25,4 @@ module.exports = {
       rules: {},
     },
   ],
-  globals: {},
 };

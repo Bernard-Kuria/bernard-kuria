@@ -10,7 +10,7 @@ export default function Me() {
   // Fetch the profile image URL and images from Firestore
   useEffect(() => {
     getProfileImgUrl().then((url) => url && setProfileImgUrl(url));
-    fetchImages().then((images) => console.log("Images:", images));
+    fetchImages();
   }, []);
 
   // Animation for the border glow
