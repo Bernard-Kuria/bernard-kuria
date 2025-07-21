@@ -1,7 +1,7 @@
 import { Router } from "express";
 import cors from "cors";
 
-import { getAboutMe, postAboutMe } from "../controller/aboutMe.controller.js";
+import { getAboutMe, postAboutMe } from "../controllers/aboutMe.controller.js";
 
 const aboutMeRouter = Router();
 aboutMeRouter.use(cors());

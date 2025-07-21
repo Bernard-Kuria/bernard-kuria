@@ -1,7 +1,25 @@
-import { useState, useRef, useEffect } from "react";
+// modules
+import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// components
 import Bubble from "./components/Bubble.jsx";
 import AboutTitle from "./components/AboutTitle.jsx";
+
+// assets
+import { BubbleSpawner } from "../../hooks/useBubbleEffects.js";
+import {
+  handleClick,
+  displayAll,
+  displayNone,
+  refreshBubbles,
+  checkIfAllPopped,
+  handleYearsScroll,
+  scrollUp,
+  scrollDown,
+} from "../../hooks/useBubbleInteractions.js";
+
+// styles
 import "./styles/projAchvmt.css";
 
 const dummyMilestone = {
@@ -15,11 +33,6 @@ const dummyMilestone = {
   popped: false,
   isDummy: true,
 };
-
-// Helper to generate a random id
-function randomId() {
-  return "dummy-" + Math.random().toString(36).slice(2, 10);
-}
 
 export default function ProjAchvmt({ initialMilestones }) {
   const [milestones, setMilestones] = useState(initialMilestones);
@@ -44,128 +57,17 @@ export default function ProjAchvmt({ initialMilestones }) {
   const [displayDummy, setDisplayDummy] = useState(true);
   const [refreshKey, setRefreshKey] = useState(0);
 
-  // Dummy bubble spawner
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDummyBubbles((prev) => {
-        // Limit max bubbles on screen at once (e.g., 5)
-        if (prev.length >= 5) return prev;
-        return [
-          ...prev,
-          {
-            ...dummyMilestone,
-            id: randomId(),
-          },
-        ];
-      });
-    }, 1200); // 1.2 seconds between spawns (adjust as needed)
-    return () => clearInterval(interval);
-  }, [displayDummy]);
-
-  function handleClick(newClickedTitle) {
-    setdisplayAboutTitle(true);
-    const updatedMilestones = { ...milestones };
-    for (let milestone in updatedMilestones) {
-      updatedMilestones[milestone].clicked =
-        updatedMilestones[milestone].title === newClickedTitle;
-    }
-    setMilestones(updatedMilestones);
-
-    const updatedMilestone = Object.values(updatedMilestones).find(
-      (milestone) => milestone.title === newClickedTitle
-    );
-    setCurrentMilestone(updatedMilestone);
-    displayNone(updatedMilestones);
-    setAnimation(false);
-    setNumberOfBubbles(numberOfBubbles + 1);
-    setDisplayDummy(false); // Stop spawning dummy bubbles
-  }
-
-  function displayAll() {
-    const updatedMilestones = { ...milestones };
-    for (let milestone in updatedMilestones) {
-      if (updatedMilestones[milestone].popped === false) {
-        updatedMilestones[milestone].display = "block";
-      }
-    }
-    setMilestones(updatedMilestones);
-  }
-
-  function displayNone(updatedMilestones = milestones) {
-    const newMilestones = { ...updatedMilestones };
-    for (let milestone in newMilestones) {
-      newMilestones[milestone].display = "none";
-    }
-    setMilestones(newMilestones);
-  }
-
-  function refreshBubbles() {
-    const updatedMilestones = { ...milestones };
-    for (let milestone in updatedMilestones) {
-      updatedMilestones[milestone].popped = false;
-      updatedMilestones[milestone].clicked = false;
-    }
-    setMilestones(updatedMilestones);
-    setBubblesPopped(false);
-    setRefreshKey((k) => k + 1); // <-- Add this line
-  }
-
-  function checkIfAllPopped() {
-    const allPopped = Object.values(milestones)
-      .filter((milestone) => milestone.year === visibleYear)
-      .every((milestone) => milestone.popped === true);
-    setBubblesPopped(allPopped);
-  }
-
   const yearsRef = useRef(null);
 
-  function handleYearsScroll() {
-    const yearsContainer = yearsRef.current;
-    if (!yearsContainer) return;
+  const firstYearElement = yearsRef.current?.querySelector(".year");
+  const yearStep = firstYearElement ? firstYearElement.offsetHeight : 0;
 
-    const yearElements = Array.from(yearsContainer.children);
-    const scrollTop = yearsContainer.scrollTop;
-    const yearHeight = yearElements[0]?.offsetHeight || 1;
-    const bufferCount = 1;
-    const visibleIndex = Math.round(scrollTop / yearHeight) + bufferCount;
-    const yearText = yearElements[visibleIndex]?.textContent;
-
-    if (yearText && !isNaN(Number(yearText))) {
-      setVisibleYear(Number(yearText));
-    } else {
-      setVisibleYear(undefined);
-    }
-
-    refreshBubbles();
-    displayAll();
-    setAnimation(true);
-    setNumberOfBubbles(0);
-  }
-
-  function scrollUp() {
-    if (yearsRef.current) {
-      const firstYear = yearsRef.current.querySelector(".year");
-      const step = firstYear ? firstYear.offsetHeight : 0;
-      yearsRef.current.scrollTop -= step;
-    }
-
-    refreshBubbles();
-    displayAll();
-    setAnimation(true);
-    setNumberOfBubbles(0);
-  }
-
-  function scrollDown() {
-    if (yearsRef.current) {
-      const firstYear = yearsRef.current.querySelector(".year");
-      const step = firstYear ? firstYear.offsetHeight : 0;
-      yearsRef.current.scrollTop += step;
-    }
-    refreshBubbles();
-    displayAll();
-    setAnimation(true);
-    setNumberOfBubbles(0);
-  }
+  // Dummy bubble spawner
+  BubbleSpawner({
+    setDummyBubbles,
+    dummyMilestone,
+    displayDummy,
+  });
 
   return (
     <div className="proj-achvmt">
@@ -174,7 +76,26 @@ export default function ProjAchvmt({ initialMilestones }) {
 
       <div className="year-selection">
         <p className="select-year">Select Year</p>
-        <div className="years" ref={yearsRef} onScroll={handleYearsScroll}>
+        <div
+          className="years"
+          ref={yearsRef}
+          onScroll={() =>
+            handleYearsScroll(
+              setVisibleYear,
+              () =>
+                refreshBubbles(
+                  milestones,
+                  setMilestones,
+                  setBubblesPopped,
+                  setRefreshKey
+                ),
+              () => displayAll(milestones, setMilestones),
+              setAnimation,
+              setNumberOfBubbles,
+              yearsRef
+            )
+          }
+        >
           <div className="year empty-year">Past (No data)</div>
           {sortedYears.map((year) => (
             <div className="year" key={year}>
@@ -187,12 +108,43 @@ export default function ProjAchvmt({ initialMilestones }) {
           <FontAwesomeIcon
             icon="fa-solid fa-sort-up"
             style={{ color: "#007dff" }}
-            onClick={scrollUp}
+            onClick={() =>
+              scrollUp(
+                setVisibleYear,
+                () =>
+                  refreshBubbles(
+                    milestones,
+                    setMilestones,
+                    setBubblesPopped,
+                    setRefreshKey
+                  ),
+                () => displayAll(milestones, setMilestones),
+                setAnimation,
+                setNumberOfBubbles,
+                yearsRef,
+                yearStep
+              )
+            }
           />
           <FontAwesomeIcon
             icon="fa-solid fa-sort-down"
             style={{ color: "#007dff" }}
-            onClick={scrollDown}
+            onClick={() =>
+              scrollDown(
+                setAnimation,
+                setNumberOfBubbles,
+                () =>
+                  refreshBubbles(
+                    milestones,
+                    setMilestones,
+                    setBubblesPopped,
+                    setRefreshKey
+                  ),
+                () => displayAll(milestones, setMilestones),
+                yearsRef,
+                yearStep
+              )
+            }
           />
         </div>
       </div>
@@ -200,15 +152,30 @@ export default function ProjAchvmt({ initialMilestones }) {
         {!bubblesPopped ? numberOfBubbles : "ALL"} BUBBLES POPPED!
       </div>
       <div className="bubbles" ref={bubblesRef}>
-        {Object.values(milestones).map((milestone) => (
-          <Bubble
-            key={milestone.title + refreshKey} // <-- Add refreshKey to key
-            milestone={milestone}
-            handleClick={handleClick}
-            visibleYear={visibleYear}
-            animation={animation}
-          />
-        ))}
+        {Object.values(milestones)
+          .filter((milestone) => milestone.year === visibleYear)
+          .map((milestone) => (
+            <Bubble
+              key={milestone.title + refreshKey}
+              milestone={milestone}
+              handleClick={() =>
+                handleClick(
+                  milestone.title,
+                  setMilestones,
+                  milestones,
+                  setCurrentMilestone,
+                  setdisplayAboutTitle,
+                  () => displayNone(milestones, setMilestones),
+                  setAnimation,
+                  setNumberOfBubbles,
+                  setDisplayDummy,
+                  numberOfBubbles
+                )
+              }
+              visibleYear={visibleYear}
+              animation={animation}
+            />
+          ))}
       </div>
       {displayDummy && (
         <div className="dummybubbles">
@@ -230,10 +197,12 @@ export default function ProjAchvmt({ initialMilestones }) {
       {displayAboutTitle && (
         <AboutTitle
           currentMilestone={currentMilestone}
-          displayAll={displayAll}
+          displayAll={() => displayAll(milestones, setMilestones)}
           setdisplayAboutTitle={setdisplayAboutTitle}
           visibleYear={visibleYear}
-          checkIfAllPopped={checkIfAllPopped}
+          checkIfAllPopped={() =>
+            checkIfAllPopped(milestones, setBubblesPopped, visibleYear)
+          }
           setAnimation={setAnimation}
           animation={animation}
           setDisplayDummy={setDisplayDummy}
@@ -246,8 +215,13 @@ export default function ProjAchvmt({ initialMilestones }) {
             icon="fa-solid fa-arrows-rotate"
             style={{ color: "#007dff" }}
             onClick={() => {
-              refreshBubbles();
-              displayAll();
+              refreshBubbles(
+                milestones,
+                setMilestones,
+                setBubblesPopped,
+                setRefreshKey
+              );
+              displayAll(milestones, setMilestones);
               setAnimation(true);
               setNumberOfBubbles(0);
             }}

@@ -1,4 +1,3 @@
-// controller/aboutMe.controller.js
 import { db } from "../firebaseAdmin.js";
 
 // GET documents from collection

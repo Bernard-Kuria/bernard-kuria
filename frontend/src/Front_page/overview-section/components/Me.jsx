@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/me.css";
 
-import { getProfileImgUrl } from "../../../../api/services/cloud/cloudData.js";
-import { fetchImages } from "../../../../api/services/firestore/imagesApi.js";
+// assets
+import { getProfileImgUrl } from "../../../api/services/cloud/cloudData.js";
 
 export default function Me() {
   const [profileImgUrl, setProfileImgUrl] = useState();
@@ -10,7 +10,6 @@ export default function Me() {
   // Fetch the profile image URL and images from Firestore
   useEffect(() => {
     getProfileImgUrl().then((url) => url && setProfileImgUrl(url));
-    fetchImages();
   }, []);
 
   // Animation for the border glow

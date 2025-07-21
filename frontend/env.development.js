@@ -1,2 +1,0 @@
-// VITE_FUNCTIONS_URL=http://127.0.0.1:5001/bernard-webfolio/us-central1
-// VITE_FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
