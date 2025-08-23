@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/about-title.css";
 import Bubble from "./Bubble.jsx";
 
-import { getMilestoneImgUrl } from "../../../api/services/cloud/cloudData.js";
+import {
+  getMilestoneImgUrl,
+  getVideoUrl,
+} from "../../../api/services/cloud/cloudData.js";
 
 export default function AboutTitle({
   currentMilestone,
@@ -16,18 +19,7 @@ export default function AboutTitle({
   setDisplayDummy,
 }) {
   const [milestoneImgUrl, setMilestoneImgUrl] = useState([]);
-  useEffect(() => {
-    const imageBlock = currentMilestone.description?.find(
-      (desc) => desc.type === "images"
-    );
-
-    if (imageBlock && imageBlock.images?.length > 0) {
-      getMilestoneImgUrl({
-        imageNames: imageBlock.images, // <-- array of image paths
-      }).then((urls) => urls && setMilestoneImgUrl(urls));
-    }
-  }, [currentMilestone]);
-
+  const [videoUrl, setVideoUrl] = useState("");
   let newCurrent = { ...currentMilestone };
   newCurrent.bubbleSize = 150;
   newCurrent.fontSize = "1rem";
@@ -41,6 +33,31 @@ export default function AboutTitle({
     setAnimation(true);
     setDisplayDummy(true);
   }
+
+  // Getting the images urls
+  useEffect(() => {
+    const imageBlock = currentMilestone.description?.find(
+      (desc) => desc.type === "images"
+    );
+
+    if (imageBlock && imageBlock.images?.length > 0) {
+      getMilestoneImgUrl({
+        imageNames: imageBlock.images, // <-- array of image paths
+      }).then((urls) => urls && setMilestoneImgUrl(urls));
+    }
+  }, [currentMilestone]);
+
+  // Getting the video urls
+  useEffect(() => {
+    const videoName = currentMilestone.description?.find(
+      (desc) => desc.type === "video"
+    );
+
+    videoName &&
+      getVideoUrl(videoName.video).then((url) => {
+        url && setVideoUrl(url);
+      });
+  }, [currentMilestone]);
 
   return (
     <div className="proj-achvmt-title-container">
@@ -82,7 +99,25 @@ export default function AboutTitle({
                     ))}
                   </div>
                 )
-              ) : null}
+              ) : (
+                desc.type === "video" && (
+                  <div className="video">
+                    video:{" "}
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-circle-play"
+                      style={{ color: "#007dff" }}
+                      onClick={backToBubbles}
+                    />
+                    {videoUrl === "" ? (
+                      <div>video loading...</div>
+                    ) : (
+                      <video autoPlay muted>
+                        <source src={videoUrl} type="video/mp4" />
+                      </video>
+                    )}
+                  </div>
+                )
+              )}
             </div>
           ))}
         </div>

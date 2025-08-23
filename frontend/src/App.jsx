@@ -4,15 +4,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // assets
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faSortUp } from "@fortawesome/free-solid-svg-icons";
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCirclePlay,
+  faXmark,
+  faSortUp,
+  faSortDown,
+  faArrowsRotate,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faXmark);
 library.add(faSortUp);
 library.add(faSortDown);
 library.add(faArrowsRotate);
+library.add(faCirclePlay);
 
 // components
 import FrontPage from "./Front_page/Front-page.jsx";

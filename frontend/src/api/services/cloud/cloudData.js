@@ -29,5 +29,16 @@ export async function getMilestoneImgUrl({ imageNames }) {
   }
 }
 
+// Function to get milestone video URL
+export async function getVideoUrl(videoName) {
+  const videoRef = ref(storage, videoName);
+  try {
+    return await getDownloadURL(videoRef);
+  } catch (error) {
+    console.error("Error fetching video URL:", error);
+    return null;
+  }
+}
+
 // Default export (add this at the end)
-export default { getProfileImgUrl, getMilestoneImgUrl, app };
+export default { getProfileImgUrl, getMilestoneImgUrl, getVideoUrl, app };
