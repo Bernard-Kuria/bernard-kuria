@@ -73,11 +73,15 @@ export default function AboutTitle({
                 </ul>
               ) : desc.type === "images" ? (
                 <div className="images">
-                  {milestoneImgUrl?.map((url, i) => (
-                    <div key={i} className="image">
-                      <img src={url} alt={`milestone-${i}`} />
-                    </div>
-                  ))}
+                  {milestoneImgUrl.length <= 0 ? (
+                    <div style={{ color: "blue" }}>loading images...</div>
+                  ) : (
+                    milestoneImgUrl?.map((url, i) => (
+                      <div key={i} className="image">
+                        <img src={url} alt={`milestone-${i}`} />
+                      </div>
+                    ))
+                  )}
                 </div>
               ) : null}
             </div>
