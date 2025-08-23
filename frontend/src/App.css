@@ -24,6 +24,10 @@ body {
   overflow-y: auto;
 }
 
+.loading {
+  color: var(--primary-blue);
+}
+
 /* Features to control the scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
