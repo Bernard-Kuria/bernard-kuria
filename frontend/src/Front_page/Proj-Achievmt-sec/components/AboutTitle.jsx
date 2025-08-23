@@ -16,11 +16,6 @@ export default function AboutTitle({
   setDisplayDummy,
 }) {
   const [milestoneImgUrl, setMilestoneImgUrl] = useState([]);
-  const imageBlock = currentMilestone.description?.find(
-    (desc) => desc.type === "images"
-  );
-  console.log("milestones images:", imageBlock?.images);
-
   useEffect(() => {
     const imageBlock = currentMilestone.description?.find(
       (desc) => desc.type === "images"
