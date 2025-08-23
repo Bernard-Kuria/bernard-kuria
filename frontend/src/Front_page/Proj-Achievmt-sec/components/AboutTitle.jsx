@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/about-title.css";
 import Bubble from "./Bubble.jsx";
+
+import { getMilestoneImgUrl } from "../../../api/services/cloud/cloudData.js";
 
 export default function AboutTitle({
   currentMilestone,
@@ -12,6 +15,20 @@ export default function AboutTitle({
   animation,
   setDisplayDummy,
 }) {
+  const [milestoneImgUrl, setMilestoneImgUrl] = useState([]);
+
+  useEffect(() => {
+    const imageBlock = currentMilestone.description?.find(
+      (desc) => desc.type === "images"
+    );
+
+    if (imageBlock && imageBlock.images?.length > 0) {
+      getMilestoneImgUrl({
+        imageNames: imageBlock.images, // <-- array of image paths
+      }).then((urls) => urls && setMilestoneImgUrl(urls));
+    }
+  }, [currentMilestone]);
+
   let newCurrent = { ...currentMilestone };
   newCurrent.bubbleSize = 150;
   newCurrent.fontSize = "1rem";
@@ -44,20 +61,24 @@ export default function AboutTitle({
         />
         <h2 className="title">{currentMilestone.title}</h2>
         <div className="description">
-          {currentMilestone.description.map((desc, index) => (
+          {currentMilestone.description?.map((desc, index) => (
             <div key={index}>
               {desc.type === "paragraph" ? (
                 <p>{desc.content}</p>
               ) : desc.type === "list" ? (
                 <ul>
-                  {desc.items.map((item, index) => (
+                  {desc.items?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
               ) : desc.type === "images" ? (
-                desc.images.map((image) => (
-                  <img src={image.src} alt={image.alt || "image"} />
-                ))
+                <div className="images">
+                  {milestoneImgUrl?.map((url, i) => (
+                    <div key={i} className="image">
+                      <img src={url} alt={`milestone-${i}`} />
+                    </div>
+                  ))}
+                </div>
               ) : null}
             </div>
           ))}

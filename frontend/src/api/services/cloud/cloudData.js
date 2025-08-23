@@ -4,9 +4,8 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const storage = getStorage(app);
 
+// Functions to get the profile image URL
 const profileRef = ref(storage, "images/Profile.jpg");
-
-// Functions to get the image URL
 export async function getProfileImgUrl() {
   try {
     return await getDownloadURL(profileRef);
@@ -16,5 +15,19 @@ export async function getProfileImgUrl() {
   }
 }
 
+// Function to get milestone images URL
+export async function getMilestoneImgUrl({ imageNames }) {
+  const imagesRefs = imageNames.map((image) => ref(storage, image));
+
+  try {
+    return await Promise.all(
+      imagesRefs.map((imageRef) => getDownloadURL(imageRef))
+    );
+  } catch (error) {
+    console.error("Error fetching milestone image URLs:", error);
+    return null;
+  }
+}
+
 // Default export (add this at the end)
-export default { getProfileImgUrl, app };
+export default { getProfileImgUrl, getMilestoneImgUrl, app };
