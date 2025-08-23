@@ -16,6 +16,10 @@ export default function AboutTitle({
   setDisplayDummy,
 }) {
   const [milestoneImgUrl, setMilestoneImgUrl] = useState([]);
+  const imageBlock = currentMilestone.description?.find(
+    (desc) => desc.type === "images"
+  );
+  console.log("milestones images:", imageBlock?.images);
 
   useEffect(() => {
     const imageBlock = currentMilestone.description?.find(
@@ -72,17 +76,17 @@ export default function AboutTitle({
                   ))}
                 </ul>
               ) : desc.type === "images" ? (
-                <div className="images">
-                  {milestoneImgUrl.length <= 0 ? (
-                    <div style={{ color: "blue" }}>loading images...</div>
-                  ) : (
-                    milestoneImgUrl?.map((url, i) => (
+                milestoneImgUrl.length <= 0 ? (
+                  <div style={{ color: "blue" }}>loading images...</div>
+                ) : (
+                  <div className="images">
+                    {milestoneImgUrl?.map((url, i) => (
                       <div key={i} className="image">
                         <img src={url} alt={`milestone-${i}`} />
                       </div>
-                    ))
-                  )}
-                </div>
+                    ))}
+                  </div>
+                )
               ) : null}
             </div>
           ))}
