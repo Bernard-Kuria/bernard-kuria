@@ -111,7 +111,7 @@ export default function AboutTitle({
                     {videoUrl === "" ? (
                       <div>video loading...</div>
                     ) : (
-                      <video autoPlay muted>
+                      <video autoPlay muted controls>
                         <source src={videoUrl} type="video/mp4" />
                       </video>
                     )}
