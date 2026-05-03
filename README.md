@@ -6,7 +6,7 @@ My work spans full-stack web development, IoT solutions, and hardware-software i
 
 ## 🚀 Current Focus
 - Full-stack web development (React, Next.js, Node.js)
-- Cloud-based applications with Firebase
+- Cloud-based applications with Firebase and Google Cloud
 - IoT and embedded systems integration
 - Building scalable and user-friendly interfaces
 
@@ -14,9 +14,10 @@ My work spans full-stack web development, IoT solutions, and hardware-software i
 **Languages:** JavaScript, TypeScript, Python, C/C++  
 **Frontend:** React, Next.js, HTML, CSS, Tailwind  
 **Backend:** Node.js, Express  
-**Databases:** Firebase Firestore, MongoDB, PostgreSQL  
-**Tools:** Git, Firebase, Vercel, Railway  
-**Embedded Systems:** Arduino, SPI, I2C, Bluetooth, Wi-Fi
+**Databases:** Firebase Firestore, MongoDB, PostgreSQL
+**Cloud:** Google Cloud Storage, Firebase storage
+**Tools:** Git, Firebase, Vercel, Railway, Hostinger, Truehost
+**Embedded Systems:** Arduino, ESP32, PIC, Raspberry pi, SPI, I2C, Bluetooth, Wi-Fi
 
 ## 🌐 Portfolio
 You can explore my work and projects here:  
