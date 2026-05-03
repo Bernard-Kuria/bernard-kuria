@@ -14,9 +14,9 @@ My work spans full-stack web development, IoT solutions, and hardware-software i
 **Languages:** JavaScript, TypeScript, Python, C/C++  
 **Frontend:** React, Next.js, HTML, CSS, Tailwind  
 **Backend:** Node.js, Express  
-**Databases:** Firebase Firestore, MongoDB, PostgreSQL
-**Cloud:** Google Cloud Storage, Firebase storage
-**Tools:** Git, Firebase, Vercel, Railway, Hostinger, Truehost
+**Databases:** Firebase Firestore, MongoDB, PostgreSQL  
+**Cloud:** Google Cloud Storage, Firebase storage  
+**Tools:** Git, Firebase, Vercel, Railway, Hostinger, Truehost  
 **Embedded Systems:** Arduino, ESP32, PIC, Raspberry pi, SPI, I2C, Bluetooth, Wi-Fi
 
 ## 🌐 Portfolio
